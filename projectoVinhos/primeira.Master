@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="primeira.Master.cs" Inherits="projectoVinhos.principal" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Projecto Vinhos</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <header class="navbar ps-3" style="background-color: #722F37;">
+          <h4 style="color:aliceblue">Programação WEB (server-side)</h4>
+    </header>
+
+    <!-- Navbar -->
+    
+    <form id="form1" runat="server">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #722F37;">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <asp:HyperLink NavigateUrl="~/home.aspx" Text="Página inicial" runat="server"
+                            class="nav-item nav-link active"></asp:HyperLink>
+                        <asp:HyperLink NavigateUrl="~/pesquisa.aspx" Text="Pesquisa" runat="server"
+                            class="nav-item nav-link"></asp:HyperLink>
+                    </div>
+                    <div class="navbar-nav ms-auto">
+                        <asp:LoginView ID="LoginView1" runat="server">
+                            <AnonymousTemplate>
+                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="nav-link nav-item" NavigateUrl="~/criar_conta.aspx">Criar conta</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink2" CssClass="nav-link nav-item" runat="server" NavigateUrl="~/login.aspx">Login</asp:HyperLink>
+                            </AnonymousTemplate>
+                            <RoleGroups>
+                                <asp:RoleGroup Roles="utilizador">
+                                    <ContentTemplate>
+                                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/utilizador/area_pessoal.aspx" class="nav-item nav-link">Área pessoal</asp:HyperLink>
+                                        <asp:LoginStatus ID="LoginStatus1" runat="server" class="nav-item nav-link" OnLoggingOut="LoginStatus_LoggingOut" LogoutText="Logout" />
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                                <asp:RoleGroup Roles="admin">
+                                    <ContentTemplate>
+                                        <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/admin/area_gestao.aspx" class="nav-item nav-link">Área de gestão</asp:HyperLink>
+
+                                        <div class="nav-item dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Gerir dados</a>
+                                            <div class="dropdown-menu">
+                                                <asp:HyperLink NavigateUrl="~/admin/castas.aspx" Text="Castas" runat="server" CssClass="dropdown-item" />
+                                                <asp:HyperLink NavigateUrl="~/admin/enologos.aspx" Text="Enólogos" runat="server" CssClass="dropdown-item" />
+                                                <asp:HyperLink NavigateUrl="~/admin/produtores.aspx" Text="Produtores" runat="server" CssClass="dropdown-item" />
+                                                <asp:HyperLink NavigateUrl="~/admin/regioes.aspx" Text="Regiões" runat="server" CssClass="dropdown-item" />
+                                                <asp:HyperLink NavigateUrl="~/admin/tipos.aspx" Text="Tipos de vinho" runat="server" CssClass="dropdown-item" />
+                                            </div>
+                                        </div>
+
+                                        <asp:LoginStatus ID="LoginStatus2" runat="server" class="nav-item nav-link" OnLoggingOut="LoginStatus_LoggingOut" LogoutText="Logout" />
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
+                        </asp:LoginView>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <!-- Footer -->
+  <footer class="p-1 text-muted footer" style="background-color: #722F37;">
+    <section class="container-fluid" >
+      <div class="row ">
+
+      </div>
+    </section>
+
+    <!-- Autor do Projecto -->
+    <div class="container">
+      <p class="copy small text-center p-2">
+        <em>© 2022 Copyright: Bootstrap by Amélia Cerejo Lopes</em>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
